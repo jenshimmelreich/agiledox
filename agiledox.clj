@@ -19,6 +19,8 @@
 (defn as-feature [line]
   (.toLowerCase (.replaceAll line "([A-Z])" " $1")))
 
+(def empty-line "")
+
 (defn test-lines? [test-file] (not-empty (test-file :lines)))
 
 (defn make-spec [test-file]
@@ -26,7 +28,7 @@
     (list
       (as-header (test-file :name))
       (map as-feature (test-file :lines))
-      "")))
+      empty-line)))
 
 (dorun 
   (map (fn [s] (if s (println s)))
