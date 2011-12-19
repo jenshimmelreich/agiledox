@@ -20,21 +20,17 @@
   (.toLowerCase (.replaceAll line "([A-Z])" " $1")))
 
 (defn test-lines? [test-file] (not-empty (test-file :lines)))
-(defn print-class [test-file] (println (as-header (test-file :name))))
-(defn print-line [line] (println (as-feature line)))
-(defn print-lines [test-file]
-  (dorun
-    (map print-line
-         (test-file :lines))))
 
-(defn print-spec [test-file]
+(defn make-spec [test-file]
   (if (test-lines? test-file)
-    (do
-      (print-class test-file)
-      (print-lines test-file)
-      (println ""))))
+    (list
+      (as-header (test-file :name))
+      (map as-feature (test-file :lines))
+      "")))
 
 (dorun 
-  (map print-spec 
-       (map make-test-file 
-            (java-test-files "."))))
+  (map (fn [s] (if s (println s)))
+    (flatten
+      (map make-spec
+           (map make-test-file 
+                (java-test-files "."))))))
