@@ -9,9 +9,9 @@
 (defn test-lines [file]
   (map extract-feature (rest (.split (slurp file) "@Test"))))
 
-(defstruct test-file :name :lines)
+(defrecord Testfile [name lines])
 (defn make-test-file [file]
-  (struct test-file (.getName file) (test-lines file)))
+  (Testfile. (.getName file) (test-lines file)))
 
 (defn as-header [filename]
   (.replaceFirst (.replaceFirst filename "\\.java" "") "Test" ""))
@@ -21,13 +21,13 @@
 
 (def empty-line "")
 
-(defn test-lines? [test-file] (not-empty (test-file :lines)))
+(defn test-lines? [test-file] (not-empty (:lines test-file)))
 
 (defn make-spec [test-file]
   (if (test-lines? test-file)
     (list
-      (as-header (test-file :name))
-      (map as-feature (test-file :lines))
+      (as-header (:name test-file))
+      (map as-feature (:lines test-file))
       empty-line)))
 
 (dorun 
