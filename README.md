@@ -1,27 +1,30 @@
 agiledox
 =============
 
-agiledox generates a simple documentation from junit4-Tests.
-It is the _junit4-Version_ of [agiledox](http://agiledox.sourceforge.net/).
+agiledox generates a simple documentation from junit4-Tests. 
+It is the _junit4-Version_ of [agiledox](http://agiledox.sourceforge.net/). 
 The documentation-style is inspired by the spec-like tools (e.g. ruby-rspec).
 
 Installation
 ------------
 
 Install clojure: (on OSX)
+
     brew install clj
 
 Check it out:
+
     git clone git://github.com/jenshimmelreich/agiledox.git
 
-Let the line in the shellscript agiledox point to agiledox.clj.
+Let the line in the shellscript agiledox point to agiledox.clj. 
 Put agiledox in your path.
 
 Usage
 -----
 
-Go into the root-directory of a java-project.
+Go into the root-directory of a java-project. 
 Run agiledox
+
     agiledox
 
 It would generate output like:
