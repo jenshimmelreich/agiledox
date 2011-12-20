@@ -25,10 +25,10 @@
 
 (defn make-spec [test-file]
   (if (test-lines? test-file)
-    (list
+    [ 
       (as-header (:name test-file))
       (map as-feature (:lines test-file))
-      empty-line)))
+      empty-line]))
 
 (dorun 
   (map (fn [s] (if s (println s)))
