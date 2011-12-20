@@ -3,7 +3,7 @@ agiledox
 
 agiledox generates a simple documentation from junit4-Tests.  
 It is the _junit4-Version_ of [agiledox](http://agiledox.sourceforge.net/).  
-The documentation-style is inspired by the spec-like tools (e.g. ruby-rspec). 
+The documentation-style is inspired by the spec tools (e.g. ruby-rspec). 
 
 Installation
 ------------
