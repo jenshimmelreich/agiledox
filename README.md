@@ -10,7 +10,7 @@ Installation
 
 Install clojure: (on OSX)
 
-    brew install clj
+    brew install clojure
 
 Check it out:
 
