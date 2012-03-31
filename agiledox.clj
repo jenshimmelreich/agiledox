@@ -18,9 +18,12 @@
 
 (defn skipTestPerfixIfPresent [feature]
 	(.replaceFirst feature "- test" "-"))
+
+(defn formSentense [feature]
+	(str " - " (.toUpperCase (.substring feature 2 3)) (.substring feature 3) ".") )
 	
 (defn as-feature [line]
-  (skipTestPerfixIfPresent (.toLowerCase (.replaceAll line "([A-Z])" " $1"))))
+  (formSentense (skipTestPerfixIfPresent (.toLowerCase (.replaceAll line "([A-Z])" " $1")))))
 
 (def empty-line "")
 
