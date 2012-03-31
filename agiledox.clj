@@ -1,4 +1,5 @@
 (use 'clojure.java.io)
+(use '[clojure.string :only [capitalize]])
 
 (defn java-test-file? [file] (.matches (.getName file) ".*[Tt]est.*\\.java"))
 (defn java-test-files [dirname]
@@ -20,7 +21,7 @@
 	(.replaceFirst feature "- test" "-"))
 
 (defn formSentense [feature]
-	(str " - " (.toUpperCase (.substring feature 2 3)) (.substring feature 3) ".") )
+	(str " - " (capitalize (.substring feature 2)) ".") )
 	
 (defn as-feature [line]
   (formSentense (skipTestPerfixIfPresent (.toLowerCase (.replaceAll line "([A-Z])" " $1")))))
