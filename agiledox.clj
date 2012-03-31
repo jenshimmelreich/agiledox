@@ -17,7 +17,7 @@
   (str (.replaceFirst (.replaceFirst filename "\\.java" "") "Test" "") ":"))
 
 (defn as-feature [line]
-  (.toLowerCase (.replaceAll line "([A-Z])" " $1")))
+  (.replaceFirst (.toLowerCase (.replaceAll line "([A-Z])" " $1")) "- test" "-"))
 
 (def empty-line "")
 
