@@ -14,7 +14,7 @@
   (Testfile. (.getName file) (test-lines file)))
 
 (defn as-header [filename]
-  (.replaceFirst (.replaceFirst filename "\\.java" "") "Test" ""))
+  (str (.replaceFirst (.replaceFirst filename "\\.java" "") "Test" "") ":"))
 
 (defn as-feature [line]
   (.toLowerCase (.replaceAll line "([A-Z])" " $1")))
