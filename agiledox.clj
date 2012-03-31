@@ -16,8 +16,11 @@
 (defn as-header [filename]
   (str (.replaceFirst (.replaceFirst filename "\\.java" "") "Test" "") ":"))
 
+(defn skipTestPerfixIfPresent [feature]
+	(.replaceFirst feature "- test" "-"))
+	
 (defn as-feature [line]
-  (.replaceFirst (.toLowerCase (.replaceAll line "([A-Z])" " $1")) "- test" "-"))
+  (skipTestPerfixIfPresent (.toLowerCase (.replaceAll line "([A-Z])" " $1"))))
 
 (def empty-line "")
 
