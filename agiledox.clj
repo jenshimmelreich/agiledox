@@ -20,14 +20,14 @@
 (defn as-header [filename]
   (str (.replaceFirst (.replaceFirst filename "\\.java" "") "Test" "") ":"))
 
-(defn skipTestPerfixIfPresent [feature]
+(defn skipTestPrefixIfPresent [feature]
 	(.replaceFirst feature "- test" "-"))
 
 (defn formSentense [feature]
 	(str " - " (capitalize (.substring feature 2)) ".") )
 	
 (defn as-feature [line]
-  (formSentense (skipTestPerfixIfPresent (.toLowerCase (.replaceAll line "([A-Z])" " $1")))))
+  (formSentense (skipTestPrefixIfPresent (.toLowerCase (.replaceAll line "([A-Z])" " $1")))))
 
 (def empty-line "")
 
