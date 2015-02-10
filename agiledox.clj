@@ -1,5 +1,8 @@
 (use 'clojure.java.io)
 
+(defn current-path []
+  (if *command-line-args* (first *command-line-args*) "."))
+
 (defn java-test-file? [file] (.matches (.getName file) ".*[Tt]est.*\\.java"))
 (defn java-test-files [dirname]
   (filter java-test-file? (file-seq (as-file dirname))))
@@ -35,4 +38,4 @@
     (flatten
       (map make-spec
            (map make-test-file 
-                (java-test-files "."))))))
+                (java-test-files (current-path)))))))
