@@ -1,4 +1,5 @@
 (use 'clojure.java.io)
+(use '[clojure.string :only [capitalize]])
 
 (defn current-path []
   (if *command-line-args* (first *command-line-args*) "."))
@@ -17,10 +18,16 @@
   (Testfile. (.getName file) (test-lines file)))
 
 (defn as-header [filename]
-  (.replaceFirst (.replaceFirst filename "\\.java" "") "Test" ""))
+  (str (.replaceFirst (.replaceFirst filename "\\.java" "") "Test" "") ":"))
 
+(defn skipTestPerfixIfPresent [feature]
+	(.replaceFirst feature "- test" "-"))
+
+(defn formSentense [feature]
+	(str " - " (capitalize (.substring feature 2)) ".") )
+	
 (defn as-feature [line]
-  (.toLowerCase (.replaceAll line "([A-Z])" " $1")))
+  (formSentense (skipTestPerfixIfPresent (.toLowerCase (.replaceAll line "([A-Z])" " $1")))))
 
 (def empty-line "")
 
